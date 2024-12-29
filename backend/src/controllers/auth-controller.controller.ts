@@ -84,7 +84,12 @@ export class UserController {
     }
 
     // Generate JWT token
-    const token = this.tokenService.generateToken({id:user.id, role: user.role});
+    const token = this.tokenService.generateToken({
+      id: user.id,
+      role: user.role,
+      email: user.email, 
+      time: new Date().toISOString(),
+    });
 
     return {message: 'SignIn successful', token};
   }
@@ -109,4 +114,3 @@ export class UserController {
     return this.userRepository.find();
   }
 }
-
